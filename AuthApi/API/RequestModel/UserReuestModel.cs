@@ -9,14 +9,12 @@
         public string? Username { get; set; }
         public string? Address { get; set; }
         public string? ContactNo { get; set; }
-        public string? JoinDate { get; set; }
-        public string? ValidFrom { get; set; }
-        public string? ValidTo { get; set; }
+        public DateTime? JoinDate { get; set; }
+        public DateTime? ValidFrom { get; set; }
+        public DateTime? ValidTo { get; set; }
         public int Lock { get; set; }
         public string? Photo { get; set; }
         public int Status { get; set; }
-        public byte[]? UploadProfilebyte { get; set; }
-        public byte[]? UploadSignaturebyte { get; set; }
 
     }
 }

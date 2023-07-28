@@ -41,16 +41,25 @@ namespace AuthApi.Configurations.Dapper
         /// and a direct column-name===member-name mapping is assumed (case insensitive).</returns>
         protected async Task<List<T>> GetQueryResultAsync<T>(string sQuery, object parameters = null, IDbTransaction transaction = null)
         {
-            logger.LogDebug($"QUERY GetQueryResultAsync COMMAND | {sQuery}");
-            logger.LogDebug($"QUERY GetQueryResultAsync PARAMETERS | {parameters}");
 
-            var command = new CommandDefinition(sQuery, parameters, transaction);
+            try
+            {
+                logger.LogDebug($"QUERY GetQueryResultAsync COMMAND | {sQuery}");
+                logger.LogDebug($"QUERY GetQueryResultAsync PARAMETERS | {parameters}");
 
-            var result = await Connection.QueryAsync<T>(command);
+                var command = new CommandDefinition(sQuery, parameters, transaction);
 
-            logger.LogDebug($"QUERY GetQueryResultAsync EXECUTED");
+                var result = await Connection.QueryAsync<T>(command);
 
-            return result.ToList();
+                logger.LogDebug($"QUERY GetQueryResultAsync EXECUTED");
+
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
 
         }
 

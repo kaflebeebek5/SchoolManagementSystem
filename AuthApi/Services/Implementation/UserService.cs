@@ -1,4 +1,5 @@
-﻿using AuthApi.API.RequestModel;
+﻿using AuthApi.API.DbModel;
+using AuthApi.API.RequestModel;
 using AuthApi.API.ResponseModel;
 using AuthApi.Configurations.Dapper;
 using AuthApi.Repositories.Interface;
@@ -15,7 +16,7 @@ namespace AuthApi.Services.Implementation
         {
             _userRepository = userRepository;
         }
-        public async Task<IResponse> CreateUseAsync(UserReuestModel userReuestModel)
+        public async Task<IResponse> CreateUseAsync(User userReuestModel)
         {
             return await _userRepository.CreateUseAsync(userReuestModel);
         }
