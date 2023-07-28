@@ -1,3 +1,4 @@
+USE SchoolManagementSystem
 CREATE SCHEMA Auth
 
 CREATE TABLE Auth.tblUser(
@@ -73,8 +74,6 @@ CREATE TABLE Auth.tblPermissionRole(
 	CreatedBy int NULL,
 	CreatedDate datetime NULL,
 )
-
-
 
 CREATE TABLE Auth.tblUserRole(
 	ID int PRIMARY KEY IDENTITY(1,1) NOT NULL,
