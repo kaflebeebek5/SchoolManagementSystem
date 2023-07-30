@@ -1,4 +1,5 @@
-﻿using AuthApi.DbContext;
+﻿using AuthApi.Authentication;
+using AuthApi.DbContext;
 using AuthApi.Repositories.Implementation;
 using AuthApi.Repositories.Interface;
 using AuthApi.Services.Implementation;
@@ -16,12 +17,13 @@ namespace AuthApi.Configurations
     {
         internal static IServiceCollection AddCustomServices(this IServiceCollection services,IConfiguration configuration)
         {
-            services.AddDbContext<SchoolManagementDbContext>(options =>
-                  options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
             services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+            services.AddDbContext<SchoolManagementDbContext>(options =>
+                  options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<AuthService>();
             services.AddSwaggerGen(option =>
             {
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "Authentication API", Version = "v1" });
