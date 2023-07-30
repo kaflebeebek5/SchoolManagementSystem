@@ -1,10 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Shared.Permission
 {
     public class PermissionAuthorizationHandler: AuthorizationHandler<PermissionRequirement>
@@ -16,7 +10,7 @@ namespace Shared.Permission
             {
                 if (context.User == null)
                 {
-                    return;
+                    return; 
                 }
                 var permissionss = context.User.Claims.Where(x => x.Type == "Permission" &&
                                                                     x.Value == requirement.Permission &&

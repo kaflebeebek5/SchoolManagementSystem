@@ -21,7 +21,7 @@ namespace AuthApi.API.Controllers
         }
 
         [HttpPost("CreateUser")]
-        [AllowAnonymous]
+        [Authorize(Policy ="User.C")]
         public async Task<IActionResult> CreateUser(UserReuestModel userReuestModel)
         {
             var MappedData = _mapper.Map<User>(userReuestModel);

@@ -1,5 +1,6 @@
 ﻿using AuthApi.API.DbModel;
 using AuthApi.API.RequestModel;
+using AuthApi.Authentication.Model;
 using AutoMapper;
 
 namespace AuthApi.Mapping
@@ -9,6 +10,7 @@ namespace AuthApi.Mapping
         public MappingProfile()
         {
             CreateMap<User,UserReuestModel>().ReverseMap();
+            CreateMap<User, UserClaimModel>().ReverseMap();
         }
     }
 }

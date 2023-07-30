@@ -20,6 +20,6 @@ namespace AuthApi.API.DbModel
         public DateTime? JoinDate { get; set; }
         public DateTime? ValidFrom { get; set; }
         public string? MobileNo { get; set; }
-        public int IsLocked { get; set; }
+        public bool IsLocked { get; set; }
     }
 }
