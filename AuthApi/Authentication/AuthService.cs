@@ -70,11 +70,6 @@ namespace AuthApi.Authentication
         }
         private string CreateToken(UserClaimModel userAccount, List<PermissionClaimModel> roleClaims)
         {
-            //// Create the security key from the secret key
-            //var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWT_SECURITY_KEY));
-
-            //// Create signing credentials using the security key and algorithm
-            //var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var permissionClaims = new List<Claim>();
             foreach (var claim in roleClaims)
             {
@@ -95,7 +90,7 @@ namespace AuthApi.Authentication
                 }
             .Union(permissionClaims);
             var signingCredentials = new SigningCredentials(
-                   new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWT_SECURITY_KEY)),
+                   new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfiguration:TokenSecret"]!)),
                    SecurityAlgorithms.HmacSha256Signature);
 
 
@@ -107,21 +102,7 @@ namespace AuthApi.Authentication
             var encryptedToken = tokenHandler.WriteToken(token);
             return encryptedToken;
 
-            //// Create the JWT token
-            //var tokenDescriptor = new SecurityTokenDescriptor
-            //{
-            //    Subject = new ClaimsIdentity(claims),
-            //    Expires = DateTime.Now.AddDays(2),
-            //    SigningCredentials = signingCredentials
-            //};
-
-            //var tokenHandler = new JwtSecurityTokenHandler();
-            //var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            //// Serialize the token to a string
-            //var jwtToken = tokenHandler.WriteToken(token);
-
-            //return jwtToken;
+         
         }
     }
 }
