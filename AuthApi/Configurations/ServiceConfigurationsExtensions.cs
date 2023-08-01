@@ -1,5 +1,6 @@
 ﻿using AuthApi.Authentication;
 using AuthApi.DbContext;
+using AuthApi.Repositories;
 using AuthApi.Repositories.Implementation;
 using AuthApi.Repositories.Interface;
 using AuthApi.Services.Implementation;
@@ -19,6 +20,7 @@ namespace AuthApi.Configurations
         {
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
             services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<SchoolManagementDbContext>(options =>
                   options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUserService, UserService>();

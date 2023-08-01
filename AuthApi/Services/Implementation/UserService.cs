@@ -20,9 +20,13 @@ namespace AuthApi.Services.Implementation
         {
             return await _userRepository.CreateUseAsync(userReuestModel);
         }
-        public async Task<Response<List<UserResponseModel>>> GetAllUser()
+        public async Task<Response<List<User>>> GetAllUser()
         {
             return await _userRepository.GetAllUser();
+        }
+        public async Task<Response<User>> GetUserById(int Id)
+        {
+            return await _userRepository.GetUserById(Id);
         }
     }
 }
