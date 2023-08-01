@@ -1,6 +1,7 @@
 ﻿using AuthApi.API.DbModel;
 using AuthApi.API.RequestModel;
 using AuthApi.Configurations;
+using AuthApi.Repositories;
 using AuthApi.Repositories.Interface;
 using AuthApi.Services.Interface;
 using AutoMapper;
@@ -13,10 +14,12 @@ namespace AuthApi.API.Controllers
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
+      
 
-        public UserController(IUserService userService,IMapper mapper )
+        public UserController(IUserService userService,IMapper mapper)
         {
             _userService = userService;
+           
             _mapper = mapper;
         }
 
@@ -28,11 +31,18 @@ namespace AuthApi.API.Controllers
            var Data=await _userService.CreateUseAsync(MappedData);
             return Ok(Data);
         }
-        [HttpGet]
+        [HttpGet("GetAll")]
         [AllowAnonymous]
         public async Task<IActionResult> GetAllUser()
         {
             var Data=await _userService.GetAllUser();
+            return Ok(Data);
+        }
+        [HttpGet("GetById")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetUserById(int Id)
+        {
+            var Data = await _userService.GetUserById(Id);
             return Ok(Data);
         }
     }

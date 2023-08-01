@@ -3,6 +3,7 @@ using AuthApi.Authentication.Model;
 using AuthApi.Configurations.Dapper;
 using AuthApi.DbContext;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Wrapper;
 using System.IdentityModel.Tokens.Jwt;

@@ -8,6 +8,7 @@ namespace AuthApi.Repositories.Interface
     public interface IUserRepository
     {
         Task<IResponse> CreateUseAsync(User userReuestModel);
-        Task<Response<List<UserResponseModel>>> GetAllUser();
+        Task<Response<List<User>>> GetAllUser();
+        Task<Response<User>> GetUserById(int Id);
     }
 }
