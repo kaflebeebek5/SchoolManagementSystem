@@ -28,5 +28,9 @@ namespace AuthApi.Services.Implementation
         {
             return await _userRepository.GetUserById(Id);
         }
+        public async Task<IResponse> DeleteUser(int Id)
+        {
+            return await _userRepository.DeleteUser(Id);
+        }
     }
 }

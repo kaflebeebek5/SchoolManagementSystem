@@ -10,5 +10,6 @@ namespace AuthApi.Repositories.Interface
         Task<IResponse> CreateUseAsync(User userReuestModel);
         Task<Response<List<User>>> GetAllUser();
         Task<Response<User>> GetUserById(int Id);
+        Task<IResponse> DeleteUser(int Id);
     }
 }

@@ -45,5 +45,12 @@ namespace AuthApi.API.Controllers
             var Data = await _userService.GetUserById(Id);
             return Ok(Data);
         }
+        [HttpGet("DeleteUser")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetDeleteUser(int Id)
+        {
+            var Data = await _userService.DeleteUser(Id);
+            return Ok(Data);
+        }
     }
 }
