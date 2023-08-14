@@ -16,5 +16,6 @@ namespace AuthApi.DbContext
         public DbSet<PermissionRole> PermissionRoles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Menu> Menuss { get; set; }
     }
 }
