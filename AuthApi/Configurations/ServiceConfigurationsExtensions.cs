@@ -25,6 +25,12 @@ namespace AuthApi.Configurations
                   options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<IPermissionService, PermissionService>();
+            services.AddTransient<IPermissionRepository, PermissionRepository>();
+            services.AddTransient<IMenuService, MenuService>();
+            services.AddTransient<IMenuRepository, MenuRepository>();
             services.AddTransient<AuthService>();
             services.AddSwaggerGen(option =>
             {

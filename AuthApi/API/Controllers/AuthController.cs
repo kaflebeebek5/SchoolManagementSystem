@@ -14,7 +14,7 @@ namespace AuthApi.API.Controllers
         {
             _authService = authService;
         }
-        [HttpPost]
+        [HttpPost("Login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
