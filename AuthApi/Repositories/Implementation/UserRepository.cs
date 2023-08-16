@@ -1,9 +1,7 @@
 ﻿using AuthApi.API.DbModel;
-using AuthApi.API.RequestModel;
-using AuthApi.API.ResponseModel;
-using AuthApi.Configurations.Dapper;
 using AuthApi.DbContext;
 using AuthApi.Repositories.Interface;
+using AuthApi.Services;
 using Shared.Wrapper;
 
 namespace AuthApi.Repositories.Implementation
@@ -26,7 +24,12 @@ namespace AuthApi.Repositories.Implementation
         {
             try
             {
+                userReuestModel.Password=EncryptionDecryption.EncodeString(userReuestModel.Password!);
                 userReuestModel.CreatedDate = System.DateTime.Now;
+                if(_db.Users.Where(x=>x.Username!.ToLower()==userReuestModel.Username!.ToLower()).Any())
+                {
+                    return await Response.FailAsync("Username already exists !");
+                }
                 _unitOfWork.Add(userReuestModel);
                 await _unitOfWork.CompleteAsync();
                 return await Response.SuccessAsync("User Saved Successfully!");
