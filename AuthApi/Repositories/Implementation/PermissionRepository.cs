@@ -68,7 +68,7 @@ namespace AuthApi.Repositories.Implementation
         }
         public async Task<Response<List<PermissionRoleResponseModel>>> GetPermissionByRoleIdAsync(int RoleId)
         {
-            var Data = await this.GetQueryResultAsync<PermissionRoleResponseModel>("Execute Auth.spAuthSetup @Flag='UpdatePermissionRole',@RoleID=@RoleId",
+            var Data = await this.GetQueryResultAsync<PermissionRoleResponseModel>("Execute Auth.spAuthSetup @Flag='GetPermissionRole',@RoleID=@RoleId",
               new
               {
                   RoleId
