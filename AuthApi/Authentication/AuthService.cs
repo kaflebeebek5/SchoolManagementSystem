@@ -2,6 +2,7 @@
 using AuthApi.Authentication.Model;
 using AuthApi.Configurations.Dapper;
 using AuthApi.DbContext;
+using AuthApi.Services;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.IdentityModel.Tokens;
@@ -39,7 +40,7 @@ namespace AuthApi.Authentication
             {
                 return await Response<LoginResponse>.FailAsync("Invalid Username or Password.");
             }
-            if (User.Password != authenticationRequest.Password)
+            if (User.Password != EncryptionDecryption.EncodeString(authenticationRequest.Password!))
             {
                 return await Response<LoginResponse>.FailAsync("Invalid Username or Password.");
             }
