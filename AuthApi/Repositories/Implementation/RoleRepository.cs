@@ -58,7 +58,7 @@ namespace AuthApi.Repositories.Implementation
         public async Task<IResponse> UpdateUserRoleAsync(UserRoleRequestModel requestModel)
         {
             var JsonData = JsonSerializer.Serialize(requestModel.userRoles);
-            var Message = await this.ExecuteAsync("Execute Auth.spAuthSetup @Flag='UpdateUserRole',@JsonUserRole=@JsonUserRole,@UserId=@UserId",
+            var Message = await this.ExecuteAsync("Execute Auth.spAuthSetup @Flag='UpdateUserRole',@JsonData=@JsonUserRole,@UserId=@UserId",
                 new
                 {
                     JsonUserRole = JsonData,
