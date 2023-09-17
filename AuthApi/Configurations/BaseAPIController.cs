@@ -7,7 +7,7 @@ namespace AuthApi.Configurations
     /// Base api controller. All controller should extendds this controller.
     /// </summary>
     [ApiVersion("1.0")]
-    [Route("api/[controller]")]
+    [Route("api/Auth/[controller]")]
     [ApiController]
     [Authorize]
     [Produces("application/json")]
