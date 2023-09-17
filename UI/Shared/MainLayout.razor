@@ -1,18 +1,55 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>UI</PageTitle>
+<PageTitle>SMS</PageTitle>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+<style>
+    /* CSS for the toggle button */
+    .toggle-button {
+        padding: 10px 20px;
+        background-color: #007bff; /* Default background color when the menu is visible */
+        color: white; /* Text color when the menu is visible */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
+        /* CSS for the toggle button when it's toggled off (menu hidden) */
+        .toggle-button.toggled-off {
+            background-color: #dc3545; /* Background color when the menu is hidden */
+            color: white; /* Text color when the menu is hidden */
+        }
+
+        .toggle-button i {
+            margin-left: 10px; /* Adjust the spacing between text and icon */
+        }
+
+    .toggled-off i {
+        margin-left: 10px; /* Adjust the spacing between text and icon */
+    }
+</style>
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+    @if (collapseNavMenu)
+    {
+        <div class="sidebar">
+            <NavMenu />
         </div>
-
+    }
+    <button style="height:7vh;margin-top:20%;margin-left:-2%;border-radius:22px;width: 3.8%;" @onclick="ToggleNavMenu" class="toggle-button @(collapseNavMenu ? "" : "toggled-off")"><i class="fa-solid fa-backward @(collapseNavMenu ? " " : "fa-solid fa-forward")"></i></button>
+    @* <button title="Navigation menu"  @onclick="ToggleNavMenu"> *@
+    @*     <span class="navbar-toggler-icon"></span>
+    </button> *@
+    <main>
         <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
+@code
+{
+    private bool collapseNavMenu = true;
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
